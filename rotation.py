@@ -17,27 +17,25 @@ R = np.array([[ np.cos(np.radians(angle)), -np.sin(np.radians(angle)), 0.0],
               [ np.sin(np.radians(angle)), np.cos(np.radians(angle)), 0.0],
               [ 0, 0, 1]])
 
-print('r ' , R)
 t2 = np.array([
     [1, 0, tx],
     [0, 1, ty],
     [0, 0, 1]
 ])
-print('t2: ',t2)
 
 M = np.matmul(t2, np.matmul(R, t1))
 
 #calculating points
-p = np.array([tx, ty, 1])
+p = np.array([100, 100, 1])
 p1 = M.dot(p)
 
-p = np.array([-tx, ty, 1])
+p = np.array([-100, 100, 1])
 p2 = M.dot(p)
 
-p = np.array([-tx, -ty, 1])
+p = np.array([-100, -100, 1])
 p3 = M.dot(p)
 
-p = np.array([tx, -ty, 1])
+p = np.array([100, -100, 1])
 p4 = M.dot(p)
 
 #vector with x coordinate of all 4 points
@@ -68,5 +66,7 @@ for i in range(3):
 lastx = [p1[0], p4[0]]
 lasty = [p1[1], p4[1]]
 ax.plot(lastx, lasty, 'ro-')
+#point center x, y
+ax.scatter(tx, ty)
 
 plt.show()
